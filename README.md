@@ -1,186 +1,367 @@
-# MCP Skills Collection
+# MCP Agent Skills Collection
 
-A comprehensive collection of Model Context Protocol (MCP) skills for enhancing your AI assistant capabilities.
+A curated collection of **Agent Skills** for Claude Code - modular capabilities that extend Claude's functionality through organized folders containing instructions and resources.
 
-## 🚀 What's This?
+## 🚀 What are Agent Skills?
 
-This repository contains a curated collection of MCP skill configurations that can be used with Claude Code and other MCP-compatible AI assistants. Each skill is a JSON configuration file that defines a specific tool or capability.
+Agent Skills are **model-invoked** capabilities that Claude autonomously uses based on your requests and the skill's description. Each skill consists of a `SKILL.md` file with YAML frontmatter and Markdown instructions that Claude reads when relevant.
+
+**Key Features:**
+- ✨ **Autonomous Activation** - Claude decides when to use skills based on context
+- 📦 **Modular** - Each skill is self-contained with instructions and examples
+- 🔄 **Reusable** - Reduce repetitive prompting with organized expertise
+- 👥 **Shareable** - Distribute through git or plugins to your team
+
+Learn more about [Agent Skills](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview).
 
 ## 📦 What's Included
 
-### Ready-to-Use Skills
+This repository contains 5 ready-to-use Agent Skills:
 
-1. **PDF Processor** - Extract text, tables, create and manipulate PDF documents
-2. **Web Scraper** - Advanced web scraping with anti-detection features
-3. **Database Manager** - Universal database management across multiple DB types
-4. **API Tester** - Comprehensive API testing with automated test generation
-5. **Image Processor** - AI-powered image processing and enhancement
+### 1. **PDF Processor** 📄
+Extract text, tables, fill forms, merge PDFs, and convert formats.
 
-### Templates & Examples
+### 2. **Web Scraper** 🌐
+Scrape web content with anti-detection features for static and dynamic websites.
 
-- Skill configuration template for creating your own skills
-- Basic skill examples for beginners
-- Advanced configuration examples
+### 3. **Database Manager** 🗄️
+Universal database management across PostgreSQL, MySQL, SQLite, and MongoDB.
+
+### 4. **API Tester** 🧪
+Test REST, GraphQL, and gRPC APIs with automated test generation and load testing.
+
+### 5. **Image Processor** 🖼️
+Process and enhance images with AI - resize, compress, remove backgrounds, upscale.
 
 ## 🏗️ Repository Structure
 
 ```
 mcp-skills/
-├── skills/              # Ready-to-use skill configurations
-│   ├── pdf-processor.json
-│   ├── web-scraper.json
-│   ├── database-manager.json
-│   ├── api-tester.json
-│   └── image-processor.json
-├── templates/           # Skill configuration templates
-│   └── skill-template.json
-├── examples/           # Example configurations and usage
-│   ├── README.md
-│   └── basic-skill.json
-└── README.md           # This file
+├── .claude/skills/          # Project Skills (shared via git)
+│   ├── pdf-processor/
+│   │   └── SKILL.md
+│   ├── web-scraper/
+│   │   └── SKILL.md
+│   ├── database-manager/
+│   │   └── SKILL.md
+│   ├── api-tester/
+│   │   └── SKILL.md
+│   └── image-processor/
+│       └── SKILL.md
+└── README.md                # This file
 ```
 
 ## 🛠️ How to Use These Skills
 
-### Option 1: Use Individual Skills
+### Option 1: Use Project Skills (Recommended)
 
-1. Browse the `skills/` directory
-2. Find a skill that meets your needs
-3. Copy the JSON configuration
-4. Import it into your MCP-compatible AI assistant
+1. Clone this repository into your project:
+```bash
+git clone https://github.com/TianCai19/mcp-skills.git
+```
 
-### Option 2: Create Your Own
+2. Copy skills to your project:
+```bash
+cp -r mcp-skills/.claude/skills/ .claude/
+```
 
-1. Use the template in `templates/skill-template.json`
-2. Fill in your skill details
-3. Test your configuration
-4. Share it with the community!
+3. Restart Claude Code - skills are automatically discovered!
 
-### Example Usage
+### Option 2: Use Personal Skills
+
+1. Create skills directory:
+```bash
+mkdir -p ~/.claude/skills
+```
+
+2. Copy skills:
+```bash
+cp -r mcp-skills/.claude/skills/* ~/.claude/skills/
+```
+
+3. Restart Claude Code
+
+### Option 3: Create Your Own
+
+1. Create a skill directory:
+```bash
+mkdir -p ~/.claude/skills/my-skill-name
+```
+
+2. Create `SKILL.md`:
+```bash
+touch ~/.claude/skills/my-skill-name/SKILL.md
+```
+
+3. Add YAML frontmatter and instructions (see template below)
+
+## 📋 Skill Format
+
+Each skill uses this structure:
+
+### SKILL.md Format
+
+```yaml
+---
+name: skill-name
+description: Brief description of what this Skill does and when to use it
+allowed-tools: Read, Grep, Glob  # Optional: restrict tool access
+---
+
+# Skill Name
+
+## Instructions
+Step-by-step guidance for Claude
+
+## Examples
+Concrete examples of using this skill
+```
+
+### Field Requirements
+
+- **name**: Lowercase letters, numbers, and hyphens only (max 64 chars)
+- **description**: What the skill does AND when to use it (max 1024 chars)
+- **allowed-tools**: Optional - limit which tools Claude can use
+
+## 🎯 When to Use Skills
+
+Skills activate automatically when Claude determines they're relevant. Here's when each skill activates:
+
+### PDF Processor
+**Triggers:** "Extract text from PDF", "merge PDFs", "fill forms", "PDF files"
+**Use for:** All PDF-related tasks
+
+### Web Scraper
+**Triggers:** "Scrape website", "extract web data", "HTML content"
+**Use for:** Web scraping and data extraction
+
+### Database Manager
+**Triggers:** "SQL query", "database", "migration", "backup", "import data"
+**Use for:** All database operations
+
+### API Tester
+**Triggers:** "Test API", "validate endpoint", "load test", "API health"
+**Use for:** API testing and validation
+
+### Image Processor
+**Triggers:** "Resize image", "remove background", "compress photo", "image format"
+**Use for:** Image processing and optimization
+
+## 📝 Example Usage
+
+### Basic Request
+```
+Can you extract text from this PDF document?
+```
+→ Claude automatically uses PDF Processor skill
+
+### Specific Request
+```
+I need to scrape product data from this e-commerce site with pagination
+```
+→ Claude automatically uses Web Scraper skill
+
+### Complex Task
+```
+Test my REST API endpoints and generate a test report
+```
+→ Claude automatically uses API Tester skill
+
+## 🔧 Installation & Setup
+
+### Install Required Dependencies
+
+Each skill may require Python packages:
 
 ```bash
-# Install a skill
-npm install -g pdf-processor-cli
+# PDF Processor
+pip install pypdf pdfplumber PyPDF2
 
-# Use the skill
-extract_text document.pdf --output text.txt
+# Web Scraper
+pip install requests beautifulsoup4 lxml selenium playwright
+
+# Database Manager
+pip install sqlalchemy psycopg2-binary alembic pymongo
+
+# API Tester
+pip install requests httpx jsonschema pytest locust
+
+# Image Processor
+pip install Pillow opencv-python rembg waifu2x-ncnn-vulkan
 ```
 
-## 📋 Skill Configuration Schema
+### Set Environment Variables
 
-Each skill uses the following schema:
+```bash
+# Database Manager
+export DATABASE_URL="postgresql://user:pass@localhost/dbname"
 
-```json
-{
-  "name": "skill-name",
-  "description": "What the skill does",
-  "category": "category-name",
-  "tags": ["tag1", "tag2"],
-  "version": "1.0.0",
-  "author": "Your Name",
-  "configuration": {
-    "required_env": ["ENV_VAR"],
-    "optional_env": ["OPTIONAL_VAR"],
-    "parameters": { /* skill parameters */ }
-  },
-  "capabilities": ["List of features"],
-  "usage_examples": [{ /* examples */ }],
-  "installation": { /* install commands */ },
-  "documentation_url": "https://..."
-}
+# API Tester
+export API_BASE_URL="https://api.example.com"
+export API_TOKEN="your-token"
 ```
 
-## 🎯 Categories
+## 🤝 Creating Your Own Skills
 
-Skills are organized into the following categories:
+### Step 1: Create Skill Directory
+```bash
+mkdir -p .claude/skills/your-skill-name
+```
 
-- **Document Processing** - PDF, DOCX, and other document tools
-- **Web Automation** - Scraping, testing, and automation
-- **Database** - Management, migration, and backup tools
-- **Testing** - API testing, unit tests, and QA tools
-- **Image Processing** - Image manipulation and AI enhancement
-- **Examples** - Sample skills for learning
+### Step 2: Create SKILL.md
+Use this template:
 
-## 🔧 Installation Requirements
+```yaml
+---
+name: your-skill-name
+description: Brief description of what this Skill does and when to use it. Include specific triggers like "when user mentions X" or "use for Y tasks".
+---
 
-Each skill may have different requirements. Check the individual skill's `installation` field for specific commands.
+# Your Skill Name
 
-Common requirements:
-- Node.js (for NPM packages)
-- Python (for pip packages)
-- Specific CLI tools
-- API keys or environment variables
+## Instructions
+Provide clear, step-by-step guidance:
 
-## 🤝 Contributing
+1. First step
+2. Second step
+3. Use tools as needed
 
-We welcome contributions! Here's how:
+## Requirements
+List any dependencies:
+```bash
+pip install package-name
+```
 
-1. Fork this repository
-2. Create a new skill configuration
-3. Test your skill thoroughly
-4. Submit a pull request
-5. Add it to the collection!
+## Examples
+Show when to use:
+- Example 1: "User asks about X"
+- Example 2: "When working with Y"
 
-### Contribution Guidelines
+## Tips
+Additional guidance or best practices
+```
 
-- Use the provided template
-- Include clear documentation
-- Add usage examples
-- Tag appropriately
-- Test your configuration
-- Follow semantic versioning
+### Step 3: Test Your Skill
+Ask Claude a question that matches your description:
+```
+Can you help me with [your skill's use case]?
+```
 
-## 📝 Adding Your Skills
+Claude will automatically use your skill if the description matches!
 
-Want to share your skill? Here's what to include:
+## 🔍 Best Practices
 
-1. **Complete JSON configuration** following the schema
-2. **Installation instructions** for users
-3. **Usage examples** showing common use cases
-4. **Documentation links** for more details
+### Writing Effective Descriptions
 
-## 🔍 Finding Skills
+**Good (Specific):**
+```
+description: Analyze Excel spreadsheets, create pivot tables, and generate charts. Use when working with Excel files, spreadsheets, or analyzing tabular data in .xlsx format.
+```
 
-Search by:
-- **Category**: Filter by type (document, web, database, etc.)
-- **Tags**: Find skills by technology or feature
-- **Name**: Use keywords in skill names
+**Bad (Vague):**
+```
+description: Helps with data
+```
 
-## 📚 Documentation
+### Keep Skills Focused
 
-For more information:
-- [MCP Documentation](https://modelcontextprotocol.io/)
-- [Skill Template Guide](templates/skill-template.json)
-- [Example Configurations](examples/)
+**Good:**
+- "PDF form filling"
+- "Excel data analysis"
+- "Git commit messages"
+
+**Too Broad:**
+- "Document processing" → split into separate skills
+- "Data tools" → split by data type
+
+### Tool Permissions
+
+Use `allowed-tools` to restrict access:
+
+```yaml
+---
+name: safe-file-reader
+description: Read files without making changes. Use when you need read-only file access.
+allowed-tools: Read, Grep, Glob
+---
+```
+
+## 📚 Additional Resources
+
+- [Agent Skills Overview](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview)
+- [Authoring Best Practices](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/best-practices)
+- [Quick Start Guide](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/quickstart)
+- [Agent SDK Documentation](https://docs.claude.com/en/docs/agent-sdk/skills)
+
+## 🎓 Learning Examples
+
+Each skill includes:
+- ✅ Clear instructions
+- ✅ Code examples
+- ✅ Usage scenarios
+- ✅ Requirements
+- ✅ Tips and best practices
+
+Study these examples to learn how to write your own skills!
 
 ## 🐛 Troubleshooting
 
-Common issues:
+### Claude doesn't use my skill
 
-1. **Invalid JSON**: Ensure your configuration is valid JSON
-2. **Missing dependencies**: Check the `installation` field
-3. **Environment variables**: Verify required env vars are set
-4. **Permissions**: Ensure you have necessary file/DB permissions
+**Check 1: Is the description specific enough?**
+- Include both what it does AND when to use it
+- Add trigger keywords users would mention
+
+**Check 2: Is YAML valid?**
+```bash
+# Check frontmatter
+head -n 15 SKILL.md
+
+# Ensure:
+# - Opening --- on line 1
+# - Closing --- before content
+# - Valid YAML (no tabs)
+```
+
+**Check 3: Is the file in the right location?**
+```bash
+# Personal skills
+ls ~/.claude/skills/*/SKILL.md
+
+# Project skills
+ls .claude/skills/*/SKILL.md
+```
+
+### View Skill Loading Errors
+
+Run Claude Code in debug mode:
+```bash
+claude --debug
+```
 
 ## 📄 License
 
-This project is open source. Feel free to use, modify, and distribute these configurations.
+Open source - feel free to use, modify, and distribute.
 
-## ⭐ Show Your Support
+## ⭐ Contributing
 
-If you find these skills useful, please:
-- ⭐ Star this repository
-- 🔄 Share it with others
-- 🤝 Contribute your own skills
-- 📢 Spread the word!
+Want to add your skills? Here's how:
 
-## 📞 Support
+1. Fork this repository
+2. Create a new skill in `.claude/skills/`
+3. Follow the format and best practices
+4. Test your skill thoroughly
+5. Submit a pull request
 
-Need help? Have questions?
+### Contribution Checklist
 
-- Open an issue on GitHub
-- Check existing documentation
-- Review the examples folder
+- [ ] Created `.claude/skills/your-skill/SKILL.md`
+- [ ] Used valid YAML frontmatter
+- [ ] Included specific description with triggers
+- [ ] Added clear instructions
+- [ ] Provided code examples
+- [ ] Listed requirements
+- [ ] Tested the skill works
 
 ## 🎉 Acknowledgments
 
