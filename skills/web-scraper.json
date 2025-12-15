@@ -1,0 +1,58 @@
+{
+  "name": "web-scraper",
+  "description": "Advanced web scraping toolkit with anti-detection features and support for dynamic content",
+  "category": "web-automation",
+  "tags": ["web", "scraping", "automation", "extraction"],
+  "version": "2.0.0",
+  "author": "Claude Code",
+  "configuration": {
+    "required_env": [],
+    "optional_env": [
+      "PROXY_SERVER",
+      "USER_AGENT",
+      "DELAY_MS"
+    ],
+    "parameters": {
+      "timeout": {
+        "type": "number",
+        "description": "Request timeout in seconds",
+        "default": 30
+      },
+      "retries": {
+        "type": "number",
+        "description": "Number of retry attempts",
+        "default": 3
+      },
+      "concurrent_requests": {
+        "type": "number",
+        "description": "Max concurrent requests",
+        "default": 5
+      }
+    }
+  },
+  "capabilities": [
+    "Scrape static and dynamic web content",
+    "Handle JavaScript-rendered pages",
+    "Respect robots.txt",
+    "Proxy support",
+    "Rate limiting",
+    "Extract specific elements using CSS selectors",
+    "Handle authentication and sessions",
+    "Export to multiple formats (JSON, CSV, XML)"
+  ],
+  "usage_examples": [
+    {
+      "description": "Scrape a single page",
+      "command": "scrape https://example.com --output data.json"
+    },
+    {
+      "description": "Scrape multiple pages with pagination",
+      "command": "scrape-multiple https://example.com/products --pattern \"?page={}\" --start 1 --end 10"
+    }
+  ],
+  "installation": {
+    "npm": "npm install -g web-scraper-cli",
+    "pip": "pip install web-scraper-cli"
+  },
+  "documentation_url": "https://github.com/your-repo/web-scraper"
+}

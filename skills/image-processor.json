@@ -1,0 +1,68 @@
+{
+  "name": "image-processor",
+  "description": "Advanced image processing toolkit with AI-powered features for manipulation, enhancement, and analysis",
+  "category": "image-processing",
+  "tags": ["image", "processing", "ai", "enhancement", "optimization"],
+  "version": "2.3.0",
+  "author": "Claude Code",
+  "configuration": {
+    "required_env": [],
+    "optional_env": [
+      "AI_MODEL_PATH",
+      "TEMP_DIR"
+    ],
+    "parameters": {
+      "output_format": {
+        "type": "string",
+        "description": "Default output format (jpeg, png, webp, avif)",
+        "default": "jpeg"
+      },
+      "quality": {
+        "type": "number",
+        "description": "Image quality (1-100)",
+        "default": 85
+      },
+      "max_width": {
+        "type": "number",
+        "description": "Maximum width for resizing",
+        "default": 1920
+      },
+      "max_height": {
+        "type": "number",
+        "description": "Maximum height for resizing",
+        "default": 1080
+      }
+    }
+  },
+  "capabilities": [
+    "Image resizing and compression",
+    "Format conversion (JPEG, PNG, WebP, AVIF)",
+    "AI-powered image enhancement",
+    "Background removal and replacement",
+    "Object detection and segmentation",
+    "Image upscaling using AI",
+    "Watermark addition and removal",
+    "Batch processing with parallelization",
+    "Color correction and filtering",
+    "Generate image thumbnails and previews"
+  ],
+  "usage_examples": [
+    {
+      "description": "Resize and compress an image",
+      "command": "resize input.jpg --width 800 --quality 80 --output optimized.jpg"
+    },
+    {
+      "description": "Remove background from image",
+      "command": "remove-bg input.jpg --output no-bg.png"
+    },
+    {
+      "description": "Batch process multiple images",
+      "command": "batch-process *.jpg --resize --compress --output-dir processed/"
+    }
+  ],
+  "installation": {
+    "npm": "npm install -g image-processor-cli",
+    "pip": "pip install image-processor-cli"
+  },
+  "documentation_url": "https://github.com/your-repo/image-processor"
+}

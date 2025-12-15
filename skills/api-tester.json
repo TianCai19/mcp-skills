@@ -1,0 +1,65 @@
+{
+  "name": "api-tester",
+  "description": "Comprehensive API testing toolkit with automated test generation and performance monitoring",
+  "category": "testing",
+  "tags": ["api", "testing", "http", "rest", "graphql", "performance"],
+  "version": "3.0.0",
+  "author": "Claude Code",
+  "configuration": {
+    "required_env": [],
+    "optional_env": [
+      "API_BASE_URL",
+      "API_TOKEN",
+      "TEST_TIMEOUT"
+    ],
+    "parameters": {
+      "default_headers": {
+        "type": "object",
+        "description": "Default headers for all requests",
+        "default": {
+          "Content-Type": "application/json"
+        }
+      },
+      "retry_attempts": {
+        "type": "number",
+        "description": "Number of retry attempts for failed requests",
+        "default": 3
+      },
+      "follow_redirects": {
+        "type": "boolean",
+        "description": "Follow HTTP redirects",
+        "default": true
+      }
+    }
+  },
+  "capabilities": [
+    "Create and execute API test suites",
+    "Support for REST, GraphQL, and gRPC APIs",
+    "Automated test generation from OpenAPI specs",
+    "Performance benchmarking and monitoring",
+    "Response validation and schema checking",
+    "Authentication handling (OAuth, API keys, JWT)",
+    "Request/response logging and debugging",
+    "Generate detailed test reports",
+    "Mock server creation for testing"
+  ],
+  "usage_examples": [
+    {
+      "description": "Test a REST API endpoint",
+      "command": "test GET https://api.example.com/users --expect 200"
+    },
+    {
+      "description": "Run a test suite",
+      "command": "test-suite run tests/api-suite.json --report html"
+    },
+    {
+      "description": "Performance test with load",
+      "command": "load-test https://api.example.com/endpoint --users 100 --duration 60s"
+    }
+  ],
+  "installation": {
+    "npm": "npm install -g api-tester-cli",
+    "pip": "pip install api-tester-cli"
+  },
+  "documentation_url": "https://github.com/your-repo/api-tester"
+}
